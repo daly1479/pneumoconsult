@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PneumoConsult - Prenez Rendez-Vous</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="images/pneumologue-icon.png" alt="Pneumologue Logo" class="logo-icon">
+            <span>Pneumo</span>Consult
+        </div>
+        <ul class="menu">
+            <a href="index.html">Accueil</a>
+            <a href="index.html#services">Services</a>
+            <a href="index.html#comment ça marche ?">Comment ça marche ?</a>
+            <a href="Prenez Rendez-Vous.html">Prenez Rendez-Vous</a>
+            <a href="login.php">Liste des Rendez-Vous</a>
+        </ul>
+    </header>
+
+    <!-- Prenez Rendez-Vous Section -->
+    <section class="appointment">
+        <div class="appointment-info">
+            <h1>Prenez Rendez-Vous avec un Pneumologue</h1>
+            <p>Choisissez une date et une heure pour consulter un de nos pneumologues certifiés en ligne.</p>
+            <form id="appointmentForm" method="POST" action="php/submit_appointment.php">
+                <div class="form-group">
+                    <label for="name">Votre Nom</label>
+                    <input type="text" id="name" name="name" required placeholder="Entrez votre nom complet">
+                </div>
+                <div class="form-group">
+                    <label for="email">Votre Email</label>
+                    <input type="email" id="email" name="email" required placeholder="Entrez votre email">
+                </div>
+                <div class="form-group">
+                    <label for="date">Date de Rendez-vous</label>
+                    <input type="date" id="date" name="date" required>
+                </div>
+                <div class="form-group">
+                    <label for="time">Heure de Rendez-vous</label>
+                    <input type="time" id="time" name="time" required>
+                </div>
+                <div class="form-group">
+                    <button type="submit">Confirmer le Rendez-Vous</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Confirmation Section -->
+    <section class="confirmation" style="display: none;">
+        <div class="confirmation-message">
+            <h1>Confirmation de Rendez-vous</h1>
+            <p>Merci d'avoir pris rendez-vous avec PneumoConsult.</p>
+            <p>Malheureusement, la date sélectionnée est déjà réservée. Veuillez choisir une autre date.</p>
+            <a href="Prenez Rendez-Vous.html">Réservez un autre rendez-vous</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section about">
+                <img src="images/pneumologue-icon.png" alt="Pneumologue Logo" class="logo-icon1">
+                <h2 class="footer-title">PneumoConsult</h2>
+                <p>Nous sommes une équipe dédiée à fournir les meilleurs services médicaux en ligne.</p>
+                <p>Vos données sont sécurisées et soumises au secret médical.</p>
+            </div>
+            <div class="footer-section legal-info">
+                <h2 class="footer-title">Informations légales</h2>
+                <ul>
+                    <li><a href="#">Conditions générales d'utilisation</a></li>
+                    <li><a href="#">Politique de protection des données personnelles</a></li>
+                    <li><a href="#">Politique de gestion des cookies</a></li>
+                    <li><a href="#">Mentions légales</a></li>
+                    <li><a href="#">Déclaration d'accessibilité</a></li>
+                    <li><a href="#">Contenu médical</a></li>
+                </ul>
+            </div>
+            <div class="footer-section links">
+                <h2 class="footer-title">Liens rapides</h2>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="index.html#services">Services</a></li>
+                    <li><a href="index.html#comment ça marche ?">À propos</a></li>
+                    <li><a href="index.html##contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section contact-form">
+                <h2 class="footer-title">Contactez-Nous Aujourd'hui</h2>
+                <form action="sendmail.php" method="post" >
+                    <input type="text" id="nom" name="nom" placeholder="Entrez votre nom" required>
+                    <input type="email" name="email" placeholder="Votre email" required>
+                    <textarea name="message" placeholder="Entrez votre message" cols="30" rows="8" required></textarea>      
+                    <button type="submit">Envoyer votre message</button>
+                </form>
+            </div>            
+        </div>
+        <div class="footer-bottom">
+            &copy; 2024 PneumoConsult | Tous droits réservés
+        </div>
+    </footer>
+
+    <div class="end">
+        <p>Réalisé par @Dounia Rzimou</p>
+    </div>
+
+    <!-- Script JavaScript -->
+    <script>
+        document.getElementById("appointmentForm").addEventListener("submit", async function (event) {
+            event.preventDefault(); // Empêche le rechargement de la page
+        
+            const formData = new FormData(this);
+        
+            try {
+                const response = await fetch("submit_appointment.php", {
+                    method: "POST",
+                    body: formData,
+                });
+        
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+        
+                const result = await response.json(); // Assurez-vous que PHP renvoie du JSON valide
+        
+                if (result.success) {
+                    alert("Votre rendez-vous a été confirmé !");
+                } else {
+                    alert("Une erreur est survenue : " + result.message);
+                }
+            } catch (error) {
+                console.error("Erreur lors de la soumission du formulaire:", error);
+        alert("Une erreur s'est produite. Veuillez réessayer.");
+        // Rediriger vers login.php en cas d'erreur
+        window.location.href = "login.php"; // Rediriger vers login.php en cas d'erreur
+    }
+        });
+        
+    </script>
+
+</body>
+</html>

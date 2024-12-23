@@ -1,0 +1,169 @@
+/* style_liste_rendezvous.css */
+
+body {
+    padding-top: 80px; /* Compense la hauteur de l'en-tête fixée */
+    background-color: #c6d5d5b6;
+    margin: 0 auto;
+}
+
+header {
+    background-color: #f5f9f9b6;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 5%;
+    position: fixed; /* Fixe l'en-tête */
+    width: 100%; /* Prend toute la largeur */
+    top: 0; /* Fixe l'en-tête en haut de la page */
+    z-index: 1000; /* Assure que l'en-tête reste au-dessus du contenu */
+}
+header .logo {
+    font-size: 25px;
+}
+header .logo span {
+    color: #034343;
+}
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo-icon {
+    width: 60px;
+    height: 40px;
+    margin-right: 5px;
+}
+header .menu a {
+    position: relative;
+    margin: 0 10px;
+    text-decoration: 0;
+    color: #02393c;
+    transition: 0.5s;
+}
+header .menu a:before {
+    position: absolute;
+    top: -2px;
+    content: "";
+    width: 0;
+    height: 2px;
+    background-color: #bc1730;
+    transition: 0.5s;
+}
+header .menu a:hover:before {
+    width: 100%;
+}
+header .menu a:hover {
+    color: #000;
+}
+
+.container {
+    width: 60%;
+    margin: 100px auto;
+    background-color: #edf4f5;
+    padding: 60px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    font-size: 40px;
+    margin-bottom: 50px;
+
+
+}
+/* Champs de formulaire */
+form {
+    display: grid;
+    grid-template-columns: 1fr 2fr; /* Deux colonnes : étiquette et champ */
+    gap: 15px 10px; /* Espacement vertical et horizontal */
+    align-items: center; /* Alignement vertical au centre */
+    max-width: 400px;
+    margin: 0 auto; /* Centre le formulaire horizontalement */
+}
+form div {
+    display: contents; /* Permet d'utiliser les étiquettes et champs dans la grille */
+
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+    font-weight: bold;
+    text-align: center;
+
+
+}
+
+input {
+    width: 150%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+    
+}
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+button {
+    
+    grid-column: span 2; /* Le bouton prend les deux colonnes */
+    display: block; /* Permet de le centrer facilement */
+    margin: 0 auto; /* Centre le bouton horizontalement */
+    width: 50%; /* Réduire la largeur du bouton */
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+
+}
+
+button:hover {
+    background-color: #45a049;
+}
+/* Footer */
+.footer {
+    background-color: #738f94b6;
+    color: #ffffff;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
